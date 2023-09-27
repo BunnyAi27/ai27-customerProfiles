@@ -61,7 +61,8 @@
       "accountId": "678201811383",
       "region": "us-east-1",
       "environment": "dev",
-      "featureName": "test"
+      "featureName": "customerProfile",
+      "prefix": "ai27"
     },
     "sit": {},
     "prd": {}
