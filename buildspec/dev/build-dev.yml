@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+    - npm install -g aws-cdk
+  pre_build:
+    commands:
+    - npm install 
+  build:  
+    commands:
+    - npx cdk synth --context environment=dev --all  --require-approval=never
+    - npx cdk deploy --context environment=dev --all  --require-approval=never
+
+Artifacts:  
+  files:
+  - '**/*'
