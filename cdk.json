@@ -63,7 +63,11 @@
       "environment": "dev",
       "featureName": "customerProfile",
       "prefix": "ai27",
-      "cognitoAPIUserPool": "arn:aws:cognito-idp:us-east-1:678201811383:userpool/us-east-1_6f7r4TTRi"
+      "cognitoAPIUserPool": "arn:aws:cognito-idp:us-east-1:678201811383:userpool/us-east-1_6f7r4TTRi",
+      "authScopeCreate":"customer.profile/create",
+      "authScopeDelete":"customer.profile/delete",
+      "authScopeUpdate":"customer.profile/update",
+      "authScopeSearch":"customer.profile/search"
     },
     "sit": {},
     "prd": {}
