@@ -17,32 +17,32 @@ const connectProfileAction = async (event) => {
   console.log("Params: ", eventBody);
   try {
     switch (event.resource) {
-      case event.resource.includes("createCustomerProfile"):
+      case "/createCustomerProfile":
         console.log("Create Params: ", eventBody);
         command = new CreateProfileCommand(eventBody);
         response = await client.send(command);
         console.log("Create response: ", response);
         return responseBuilder.formatResponse(event, 200, response);
 
-      case event.resource.includes("deleteCustomerProfile"):
+      case "/deleteCustomerProfile":
         console.log("Delete Params: ", eventBody);
         command = new DeleteProfileCommand(eventBody);
         response = await client.send(command);
         console.log("Delete response: ", response);
         return responseBuilder.formatResponse(event, 200, response);
 
-      case event.resource.includes("updateCustomerProfile"):
+      case "/updateCustomerProfile":
         console.log("Delete Params: ", eventBody);
         command = new UpdateProfileCommand(eventBody);
         response = await client.send(command);
         console.log("Delete response: ", response);
         return responseBuilder.formatResponse(event, 200, response);
 
-      case event.resource.includes("getCustomerProfile"):
-        console.log("Get Params: ", params);
-        command = new SearchProfilesCommand(params);
+      case "/searchCustomerProfile":
+        console.log("Search Params: ", eventBody);
+        command = new SearchProfilesCommand(eventBody);
         response = await client.send(command);
-        console.log("Get response: ", response);
+        console.log("Search response: ", response);
         return responseBuilder.formatResponse(event, 200, response);
       default:
         console.log("default case");
