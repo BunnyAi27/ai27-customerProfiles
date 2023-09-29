@@ -18,32 +18,53 @@ const connectProfileAction = async (event) => {
   try {
     switch (event.resource) {
       case "/createCustomerProfile":
-        console.log("Create Params: ", eventBody);
-        command = new CreateProfileCommand(eventBody);
-        response = await client.send(command);
-        console.log("Create response: ", response);
-        return responseBuilder.formatResponse(event, 200, response);
+        try {
+          console.log("Create Params: ", eventBody);
+          command = new CreateProfileCommand(eventBody);
+          response = await client.send(command);
+          console.log("Create response: ", response);
+          return responseBuilder.formatResponse(event, 200, response);
+        } catch (error) {
+          console.error("Create response: ", error);
+          return responseBuilder.formatResponse(event, 400, error);
+        }
 
       case "/deleteCustomerProfile":
-        console.log("Delete Params: ", eventBody);
-        command = new DeleteProfileCommand(eventBody);
-        response = await client.send(command);
-        console.log("Delete response: ", response);
-        return responseBuilder.formatResponse(event, 200, response);
+        try {
+          console.log("Delete Params: ", eventBody);
+          command = new DeleteProfileCommand(eventBody);
+          response = await client.send(command);
+          console.log("Delete response: ", response);
+          return responseBuilder.formatResponse(event, 200, response);
+        } catch (error) {
+          console.error("Delete response: ", error);
+          return responseBuilder.formatResponse(event, 400, error);
+        }
 
       case "/updateCustomerProfile":
-        console.log("Delete Params: ", eventBody);
-        command = new UpdateProfileCommand(eventBody);
-        response = await client.send(command);
-        console.log("Delete response: ", response);
-        return responseBuilder.formatResponse(event, 200, response);
+        try {
+          console.log("Delete Params: ", eventBody);
+          command = new UpdateProfileCommand(eventBody);
+          response = await client.send(command);
+          console.log("Delete response: ", response);
+          return responseBuilder.formatResponse(event, 200, response);
+        } catch (error) {
+          console.error("Update response: ", error);
+          return responseBuilder.formatResponse(event, 400, error);
+        }
 
       case "/searchCustomerProfile":
-        console.log("Search Params: ", eventBody);
-        command = new SearchProfilesCommand(eventBody);
-        response = await client.send(command);
-        console.log("Search response: ", response);
-        return responseBuilder.formatResponse(event, 200, response);
+        try {
+          console.log("Search Params: ", eventBody);
+          command = new SearchProfilesCommand(eventBody);
+          response = await client.send(command);
+          console.log("Search response: ", response);
+          return responseBuilder.formatResponse(event, 200, response);
+        } catch (error) {
+          console.error("Search response: ", error);
+          return responseBuilder.formatResponse(event, 400, error);
+        }
+
       default:
         console.log("default case");
     }
