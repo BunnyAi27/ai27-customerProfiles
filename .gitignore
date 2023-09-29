@@ -1,5 +1,27 @@
-node_modules
+*.swp
+.pytest_cache
+*.egg-info
+/**/**/node_modules/
 
-# CDK asset staging directory
-.cdk.staging
-cdk.out
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*package-lock.json
+*package-lock
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.nyc_output/
+coverage/
+package-lock.json
+package-lock
+
+# CDK Context & Staging files
+.cdk.staging/
+cdk.out/

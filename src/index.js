@@ -17,7 +17,7 @@ exports.handler = async (event) => {
   } catch (error) {
     console.error("index: error: ", error);
     const errResp = {
-      errorMessage: "Check if channel header is passed",
+      errorMessage: "Check channel header",
     };
     return responseBuilder.formatResponse(event, 500, errResp);
   }

@@ -39,7 +39,6 @@ const connectProfileAction = async (event) => {
         return responseBuilder.formatResponse(event, 200, response);
 
       case event.resource.includes("getCustomerProfile"):
-        params = {};
         console.log("Get Params: ", params);
         command = new SearchProfilesCommand(params);
         response = await client.send(command);
