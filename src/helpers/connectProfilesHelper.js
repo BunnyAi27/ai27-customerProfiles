@@ -8,21 +8,21 @@ const {
 const client = new CustomerProfilesClient();
 const responseBuilder = require("./responseBuilder");
 
-const connectProfileAction = async (event) => {
+const connectProfileAction = async (event, tenantConfig) => {
   let response = "";
   let command = "";
   let params = "";
   const eventBody = JSON.parse(event.body);
 
-  console.log("Params: ", eventBody);
+  console.info("Params: ", eventBody);
   try {
     switch (event.resource) {
       case "/createCustomerProfile":
         try {
-          console.log("Create Params: ", eventBody);
+          console.info("Create Params: ", eventBody);
           command = new CreateProfileCommand(eventBody);
           response = await client.send(command);
-          console.log("Create response: ", response);
+          console.info("Create response: ", response);
           return responseBuilder.formatResponse(event, 200, response);
         } catch (error) {
           console.error("Create response: ", error);
@@ -31,10 +31,10 @@ const connectProfileAction = async (event) => {
 
       case "/deleteCustomerProfile":
         try {
-          console.log("Delete Params: ", eventBody);
+          console.info("Delete Params: ", eventBody);
           command = new DeleteProfileCommand(eventBody);
           response = await client.send(command);
-          console.log("Delete response: ", response);
+          console.info("Delete response: ", response);
           return responseBuilder.formatResponse(event, 200, response);
         } catch (error) {
           console.error("Delete response: ", error);
@@ -43,10 +43,10 @@ const connectProfileAction = async (event) => {
 
       case "/updateCustomerProfile":
         try {
-          console.log("Delete Params: ", eventBody);
+          console.info("Delete Params: ", eventBody);
           command = new UpdateProfileCommand(eventBody);
           response = await client.send(command);
-          console.log("Delete response: ", response);
+          console.info("Delete response: ", response);
           return responseBuilder.formatResponse(event, 200, response);
         } catch (error) {
           console.error("Update response: ", error);
@@ -55,10 +55,10 @@ const connectProfileAction = async (event) => {
 
       case "/searchCustomerProfile":
         try {
-          console.log("Search Params: ", eventBody);
+          console.info("Search Params: ", eventBody);
           command = new SearchProfilesCommand(eventBody);
           response = await client.send(command);
-          console.log("Search response: ", response);
+          console.info("Search response: ", response);
           return responseBuilder.formatResponse(event, 200, response);
         } catch (error) {
           console.error("Search response: ", error);
@@ -66,7 +66,7 @@ const connectProfileAction = async (event) => {
         }
 
       default:
-        console.log("default case");
+        console.info("default case");
     }
   } catch (error) {
     console.error("ConnectProfileAction catch error: ", error);
