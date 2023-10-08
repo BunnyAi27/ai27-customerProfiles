@@ -1,5 +1,5 @@
 {
-  "app": "node bin/test-repository.js",
+  "app": "node bin/customerProfile.js",
   "watch": {
     "include": [
       "**"
