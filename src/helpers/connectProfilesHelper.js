@@ -19,8 +19,7 @@ const connectProfileAction = async (event, tenantConfig) => {
     switch (event.resource) {
       case "/createCustomerProfile":
         try {
-          let domainKeyPair =  {DomainName: tenantConfig.Item.customerProfileDomainName}
-          Object.assign(eventBody, domainKeyPair)
+          const createParams = parameterBuilder.createParameterBuilder(eventBody, tenantConfig)
           console.info("Create Params: ", createParams);
           command = new CreateProfileCommand(createParams);
           response = await client.send(command);
