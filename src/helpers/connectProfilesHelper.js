@@ -7,20 +7,21 @@ const {
 } = require("@aws-sdk/client-customer-profiles");
 const client = new CustomerProfilesClient();
 const responseBuilder = require("./responseBuilder");
+const parameterBuilder = require("./connectParameterBuilder");
 
 const connectProfileAction = async (event, tenantConfig) => {
   let response = "";
   let command = "";
-  let params = "";
   const eventBody = JSON.parse(event.body);
 
-  console.info("Params: ", eventBody);
+  console.info("Event Body: ", eventBody);
   try {
     switch (event.resource) {
       case "/createCustomerProfile":
         try {
-          console.info("Create Params: ", eventBody);
-          command = new CreateProfileCommand(eventBody);
+          const createParams = parameterBuilder.createParameterBuilder(eventBody, tenantConfig)
+          console.info("Create Params: ", createParams);
+          command = new CreateProfileCommand(createParams);
           response = await client.send(command);
           console.info("Create response: ", response);
           return responseBuilder.formatResponse(event, 200, response);
@@ -31,8 +32,9 @@ const connectProfileAction = async (event, tenantConfig) => {
 
       case "/deleteCustomerProfile":
         try {
-          console.info("Delete Params: ", eventBody);
-          command = new DeleteProfileCommand(eventBody);
+          const deleteParams = parameterBuilder.deleteParameterBuilder(eventBody, tenantConfig)
+          console.info("Delete Params: ", deleteParams);
+          command = new DeleteProfileCommand(deleteParams);
           response = await client.send(command);
           console.info("Delete response: ", response);
           return responseBuilder.formatResponse(event, 200, response);
@@ -43,10 +45,11 @@ const connectProfileAction = async (event, tenantConfig) => {
 
       case "/updateCustomerProfile":
         try {
-          console.info("Delete Params: ", eventBody);
-          command = new UpdateProfileCommand(eventBody);
+          const updateParams = parameterBuilder.updateParameterBuilder(eventBody, tenantConfig)
+          console.info("Update Params: ", updateParams);
+          command = new UpdateProfileCommand(updateParams);
           response = await client.send(command);
-          console.info("Delete response: ", response);
+          console.info("Update response: ", response);
           return responseBuilder.formatResponse(event, 200, response);
         } catch (error) {
           console.error("Update response: ", error);
@@ -55,8 +58,9 @@ const connectProfileAction = async (event, tenantConfig) => {
 
       case "/searchCustomerProfile":
         try {
-          console.info("Search Params: ", eventBody);
-          command = new SearchProfilesCommand(eventBody);
+          const searchParams = parameterBuilder.searchParameterBuilder(eventBody, tenantConfig)
+          console.info("Search Params: ", searchParams);
+          command = new SearchProfilesCommand(searchParams);
           response = await client.send(command);
           console.info("Search response: ", response);
           return responseBuilder.formatResponse(event, 200, response);

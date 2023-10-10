@@ -6,7 +6,7 @@ exports.handler = async (event) => {
   // TODO implement
   console.info("Event", JSON.stringify(event));
   const tenantId = event.headers.tenantId.toLowerCase();
-  const tenantConfig = await getTenantConfiguration.getTenantConfiguration(tenantId);
+  const tenantConfig = await getTenantConfiguration(tenantId);
 
   try {
     switch (tenantConfig.Item.dataSource.toLowerCase()) {
