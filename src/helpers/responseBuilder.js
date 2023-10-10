@@ -1,14 +1,14 @@
 const formatResponse = (event, code, response) => {
-  const formattedresponse = {
+  const formattedResponse = {
     statusCode: code,
     body: JSON.stringify(response),
   };
   if (event.stageVariables) {
     const headers = responseBuilder(event.stageVariables);
-    formattedresponse.headers = headers;
+    formattedResponse.headers = headers;
   }
-  console.log(JSON.stringify(formattedresponse));
-  return formattedresponse;
+  console.log(JSON.stringify(formattedResponse));
+  return formattedResponse;
 };
 
 module.exports = {
