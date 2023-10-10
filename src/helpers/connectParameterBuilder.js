@@ -88,7 +88,7 @@ const deleteParameterBuilder = (eventBody, tenantConfig) => {
         KeyName: eventBody.keyName, // required
         Values: eventBody.keyValues, // of type array
         AdditionalSearchKeys: eventBody.additionalSearchKeys ?? "",
-        LogicalOperator: eventBody.logicalOperator ?? "ORS"//"AND" || "OR",
+        LogicalOperator: eventBody.logicalOperator ?? "OR"//"AND" || "OR",
       }
       console.info("formattedSearchParameters: ", formattedSearchParameters);
     return formattedSearchParameters;   
